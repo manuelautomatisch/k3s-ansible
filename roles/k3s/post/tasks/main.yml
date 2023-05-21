@@ -1,6 +1,12 @@
 ---
-- name: Deploy metallb pool
-  include_tasks: metallb.yml
+- name: Create manifests directory for temp configuration
+  file:
+    path: /tmp/k3s
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    mode: 0755
+  with_items: "{{ groups['master'] }}"
+  run_once: true
 
 - name: Remove tmp directory used for manifests
   file:
