@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -86,13 +87,12 @@ spec:
               matchExpressions:
               - key: node-role.kubernetes.io/master
                 operator: Exists
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: kubevip
   namespace: kube-system
 data:
-  range-global: {{ metal_lb_ip_range }}     
-
+  range-global: {{ metal_lb_ip_range }}
 
